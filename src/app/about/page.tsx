@@ -30,65 +30,94 @@
 
 
 
-import Card from "@/components/GaleriaCard";
+// import Card from "@/components/GaleriaCard";
 
-const item = [
-  {
-    title: "macaco",
-    description: "macaquinho",
-    imageUrl:
-      "https://i.pinimg.com/736x/16/36/79/16367989d345b7570010f49fd2c86101.jpg",
-    category: "Animal",
-  },
-  {
-    title: "Sadman",
-    description: "serie de fantasia",
-    imageUrl:
-      "https://i.pinimg.com/1200x/dd/3a/62/dd3a62ba1dca2a65822c48b06019d4ad.jpg",
-    category: "Serie",
-  },
-  {
-    title: "The Witcher 3",
-    description: "RPG com uma história profunda e mundo aberto.",
-    imageUrl:
-      "https://i.pinimg.com/1200x/a6/05/0b/a6050b22888369eca9fd789f52198f23.jpg",
-    category: "Jogo",
-  },
-  {
-    title: "1984",
-    description: "Distopia clássica sobre vigilância e controle.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80",
-    category: "Livro",
-  },
-  {
-    title: "Matrix",
-    description: "Filme de ficção científica revolucionário.",
-    imageUrl:
-      "https://i.pinimg.com/736x/42/08/12/420812adcf6aa0e3185f09679de0355b.jpg",
-    category: "Filme",
-  },
-  {
-    title: "God of War",
-    description: "Ação e mitologia em uma jornada épica.",
-    imageUrl:
-      "https://i.pinimg.com/736x/ce/8b/83/ce8b8349a2b94a043c2e3e2a1f2e32e4.jpg",
-    category: "Jogo",
-  },
-];
+// const item = [
+//   {
+//     title: "macaco",
+//     description: "macaquinho",
+//     imageUrl:
+//       "https://i.pinimg.com/736x/16/36/79/16367989d345b7570010f49fd2c86101.jpg",
+//     category: "Animal",
+//   },
+//   {
+//     title: "Sadman",
+//     description: "serie de fantasia",
+//     imageUrl:
+//       "https://i.pinimg.com/1200x/dd/3a/62/dd3a62ba1dca2a65822c48b06019d4ad.jpg",
+//     category: "Serie",
+//   },
+//   {
+//     title: "The Witcher 3",
+//     description: "RPG com uma história profunda e mundo aberto.",
+//     imageUrl:
+//       "https://i.pinimg.com/1200x/a6/05/0b/a6050b22888369eca9fd789f52198f23.jpg",
+//     category: "Jogo",
+//   },
+//   {
+//     title: "1984",
+//     description: "Distopia clássica sobre vigilância e controle.",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80",
+//     category: "Livro",
+//   },
+//   {
+//     title: "Matrix",
+//     description: "Filme de ficção científica revolucionário.",
+//     imageUrl:
+//       "https://i.pinimg.com/736x/42/08/12/420812adcf6aa0e3185f09679de0355b.jpg",
+//     category: "Filme",
+//   },
+//   {
+//     title: "God of War",
+//     description: "Ação e mitologia em uma jornada épica.",
+//     imageUrl:
+//       "https://i.pinimg.com/736x/ce/8b/83/ce8b8349a2b94a043c2e3e2a1f2e32e4.jpg",
+//     category: "Jogo",
+//   },
+// ];
 
-export default function Gallery() {
+// export default function Gallery() {
+//   return (
+//     <div className="flex flex-wrap justify-center">
+//       {item.map((item, i) => (
+//         <Card
+//           key={i}
+//           title={item.title}
+//           description={item.description}
+//           imageUrl={item.imageUrl}
+//           category={item.category}
+//         />
+//       ))}
+//     </div>
+//   );
+// }
+
+
+'use client'
+
+import { useState } from 'react';
+import CommentForm from '../../components/CommentForm';
+import CommentList from '../../components/CommentList';
+
+type CommentType = {
+  name: string;
+  message: string;
+  date: string;
+};
+
+export default function HomePage() {
+  const [comments, setComments] = useState<CommentType[]>([]);
+
+  const addComment = (comment: CommentType) => {
+    setComments([comment, ...comments]);
+  };
+
   return (
-    <div className="flex flex-wrap justify-center">
-      {item.map((item, i) => (
-        <Card
-          key={i}
-          title={item.title}
-          description={item.description}
-          imageUrl={item.imageUrl}
-          category={item.category}
-        />
-      ))}
-    </div>
+    <main className='bg-sky-700 rounded-3xl text-white text-center px-1'>
+      <h1>Sistema de Comentários</h1>
+      <CommentForm onAddComment={addComment} />
+      <CommentList comments={comments} />
+    </main>
   );
 }
