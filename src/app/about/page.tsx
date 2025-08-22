@@ -1,9 +1,10 @@
-import MineDisplay from "@/components/MineDisplay";
 
-export default function About() {
+import LikeButton from "@/components/LikeButton";
+
+export default function AboutPage() {
     return(
         <div>
-            <MineDisplay/>
+            <LikeButton/>
         </div>
     )
 }
