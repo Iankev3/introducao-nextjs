@@ -1,9 +1,9 @@
-import MineDisplay from "@/components/MineDisplay";
+import FeedPage from "@/components/FeedPage";
 
 export default function About() {
     return(
         <div>
-            <MineDisplay/>
+            <FeedPage/>
         </div>
     )
 }
